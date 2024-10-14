@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 
 
 class HelloFragment : Fragment() {
@@ -15,13 +18,19 @@ class HelloFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_hello, container, false).apply {
-//            setOnClickListener {
-//                setBackgroundColor(
-//                    Color.parseColor(
-//                        arrayOf("blue", "cyan", "green").random()
-//                    )
-//                )
-//            }
+            val displayTextView = findViewById<TextView>(R.id.displayTextView)
+            val nameEditText = findViewById<EditText>(R.id.nameEditText)
+            val changeButton = findViewById<Button>(R.id.changeButton)
+
+            changeButton.setOnClickListener {
+                val name = nameEditText.text
+
+                displayTextView.text = if (name.isNotBlank()) {
+                    "Hello, $name!"
+                } else {
+                    "Please enter your name"
+                }
+            }
 
         }
     }
